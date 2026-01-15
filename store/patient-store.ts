@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { PatientInfo } from '@/types';
 
 interface PatientStore extends PatientInfo {
-  updateName: (name: string) => void;
+  updateName: (name: string | undefined) => void;
   updateDateOfBirth: (dateOfBirth: Date) => void;
   updateAge: (age: number) => void;
   updateGender: (gender: 'male' | 'female' | 'other') => void;

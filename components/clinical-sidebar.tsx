@@ -33,8 +33,8 @@ export function ClinicalSidebar() {
               placeholder="Enter patient name"
               value={name ?? ''}
               onChange={(e) => {
-                const value = e.target.value || undefined;
-                updateName(value);
+                const value = e.target.value.trim();
+                updateName(value === '' ? undefined : value);
               }}
             />
           </div>
