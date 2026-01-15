@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Ensure Spline canvas is transparent and optimized */
+canvas {
+  background: transparent !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Remove Spline watermark and branding - Comprehensive removal */
+div[class*="spline-watermark"],
+div[class*="Spline-watermark"],
+div[class*="SPLINE-watermark"],
+div[class*="watermark"],
+div[class*="Watermark"],
+div[class*="WATERMARK"],
+div[id*="watermark"],
+div[id*="Watermark"],
+div[id*="spline"],
+div[id*="Spline"],
+a[href*="spline"],
+a[href*="Spline"],
+a[href*="pult"],
+a[href*="Pult"],
+a[href*="PULT"],
+button[aria-label*="Spline"],
+button[aria-label*="spline"],
+div[data-spline],
+div[data-Spline],
+div[data-watermark],
+.spline-watermark,
+.Spline-watermark,
+#spline-watermark,
+#Spline-watermark,
+[data-watermark],
+[data-Watermark],
+iframe[src*="spline"],
+iframe[src*="Spline"],
+iframe[src*="pult"],
+iframe[src*="Pult"],
+img[src*="spline"],
+img[src*="Spline"],
+img[src*="pult"],
+img[src*="Pult"],
+img[alt*="Spline"],
+img[alt*="spline"],
+svg[class*="spline"],
+svg[class*="watermark"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+/* Remove pin-space and pin-spacer divs created by GSAP ScrollTrigger */
+.pin-space,
+.pin-spacer {
+  display: none !important;
+}
+
+/* Smooth scrolling with preference respect */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize performance for transforms and fonts */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU acceleration for animated elements */
+.spline-container {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.text-content {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Mobile optimizations for Spline container */
+@media (max-width: 768px) {
+  .spline-container {
+    transform: scale(0.65) translateZ(0) !important;
+    transform-origin: center top !important;
+  }
+
+  /* Reduce animation intensity on mobile */
+  .spline-container * {
+    transform: translateZ(0);
+  }
+}
+
+/* Enhanced glassmorphism for mobile readability */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    background: rgba(255, 255, 255, 0.75) !important;
+  }
+
+  /* Ensure text is always readable */
+  .text-content {
+    background: rgba(255, 255, 255, 0.85) !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .spline-container {
+    transform: scale(0.85) translateZ(0) !important;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+/* Focus styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Ensure interactive elements are accessible */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 3px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========================================
+   ENHANCED GLASSMORPHISM
+   ======================================== */
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+.backdrop-blur-2xl {
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+}
+
+/* Subtle shadow for depth */
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* ========================================
+   ANIMATION OPTIMIZATIONS
+   ======================================== */
+
+/* Prevent layout shifts */
+img,
+canvas,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize repaints */
+.optimize-repaint {
+  contain: layout style paint;
+}
+
+/* ========================================
+   CUSTOM PROPERTIES
+   ======================================== */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 173 81% 35%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 10%;
+    --radius: 0.5rem;
+
+    /* Performance variables */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  /* Smooth font loading */
+  html {
+    font-display: swap;
+  }
+}
+
+/* ========================================
+   LOADING ANIMATIONS
+   ======================================== */
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .spline-container,
+  canvas {
+    display: none !important;
+  }
+
+  .text-content {
+    backdrop-filter: none !important;
+    background: white !important;
+  }
+}
