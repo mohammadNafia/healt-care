@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AIAssistantPopup } from '@/components/ai-assistant-popup';
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -295,12 +296,20 @@ export default function Home() {
             <div className="text-xl font-bold text-gray-900">
               SkinCare Awareness
             </div>
-            <Link
-              href="/dashboard"
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              Go to Dashboard
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/ai-medical-center"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                AI Medical Center
+              </Link>
+              <Link
+                href="/dashboard"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Go to Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -500,8 +509,30 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Link
-                  href="/dashboard"
+                  href="/ai-medical-center"
                   className="group bg-blue-600 text-white px-10 py-5 rounded-2xl font-semibold text-xl hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  aria-label="AI Medical Center"
+                >
+                  <span className="flex items-center gap-2">
+                    AI Medical Center
+                    <svg
+                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </span>
+                </Link>
+                <Link
+                  href="/dashboard"
+                  className="group bg-white/60 backdrop-blur-md text-gray-900 px-10 py-5 rounded-2xl font-semibold text-xl hover:bg-white/80 transition-all duration-300 border-2 border-white/50 hover:border-white/80 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300"
                   aria-label="Go to dashboard"
                 >
                   <span className="flex items-center gap-2">
@@ -548,6 +579,9 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      {/* AI Assistant Popup - Available in all sections */}
+      <AIAssistantPopup />
     </main>
   );
 }

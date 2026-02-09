@@ -14,6 +14,7 @@ import { useSkinHistory } from '@/hooks/use-skin-history';
 import { Upload, AlertCircle, Home } from 'lucide-react';
 import Link from 'next/link';
 import jsPDF from 'jspdf';
+import { AIAssistantPopup } from '@/components/ai-assistant-popup';
 
 export default function DashboardPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -75,13 +76,21 @@ export default function DashboardPage() {
             <div className="text-xl font-bold text-gray-900">
               SkinCare Awareness
             </div>
-            <Link
-              href="/"
-              className="flex items-center gap-2 bg-white/60 backdrop-blur-md text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-white/80 transition-all duration-300 border-2 border-white/50 hover:border-white/80 shadow-lg hover:shadow-xl"
-            >
-              <Home className="w-4 h-4" />
-              Home
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/ai-medical-center"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                AI Medical Center
+              </Link>
+              <Link
+                href="/"
+                className="flex items-center gap-2 bg-white/60 backdrop-blur-md text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-white/80 transition-all duration-300 border-2 border-white/50 hover:border-white/80 shadow-lg hover:shadow-xl"
+              >
+                <Home className="w-4 h-4" />
+                Home
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -247,6 +256,9 @@ export default function DashboardPage() {
           </div>
         </div>
       </footer>
+
+      {/* AI Assistant Popup - Available in all sections */}
+      <AIAssistantPopup />
     </div>
   );
 }
